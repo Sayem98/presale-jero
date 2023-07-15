@@ -5,12 +5,12 @@ import Web3 from "web3";
 export default function Referral(props) {
 
   const ref = React.useRef();
-  const level = []
+  const [level, setLevel] = React.useState([]);
   
   useEffect(() => {
     if(props.ref_data && props.ref_data1){
       
-      const level = [
+   setLevel([
     {
       id: "1",
       num: "8%",
@@ -34,9 +34,9 @@ export default function Referral(props) {
       num: "2%",
       count: props.ref_data1[3],
       earn: Web3.utils.fromWei(props.ref_data[3].toString(), 'nano') * 10
-    },
+    }
     
-  ];
+  ]);
     }
   }, [props.ref_data, props.ref_data1]);
 
@@ -97,7 +97,7 @@ export default function Referral(props) {
         <p className="text-yellow-700  pt-3 font-medium select-none mt-2 text-sm">
           Referral Link
         </p>
-        <div className="flex rounded-lg my-2 ">
+        <div className="flex rounded-lg my-2 flex-col md:flex-row">
           <span
             type="text"
             name="company-website"
@@ -109,7 +109,7 @@ export default function Referral(props) {
           </span>
           <button
             type="button"
-            className="inline-flex focus:ring-yellow-700 focus:border-yellow-700 items-center px-3 rounded-md border border-yellow-700 bg-gray-50 text-yellow-700 text-xs"
+            className="inline-flex h-6 w-6 md:h-auto md:w-auto m-auto focus:ring-yellow-700 focus:border-yellow-700 items-center md:px-3 rounded-md border border-yellow-700 bg-gray-50 text-yellow-700 text-xs "
           >
             <DuplicateIcon
               className="flex-shrink-0 h-6 w-6 text-yellow-700"
@@ -120,14 +120,7 @@ export default function Referral(props) {
             />
           </button>
         </div>
-        {/* <p className="text-yellow-700 font-medium select-none mb-2 text-xs">
-          JERO 20 level referral system: Each level has its own % which is equal
-          to 5% for 1st, 3% for 2nd, 2% for 3rd, 1% for 4th, 1% for 5th, 1% for
-          6th, 1% for 7th, 1% for 8th, 0.5% for 9th, 0.5% for 10th, 0.5% for
-          11th, 0.5% for 12th, 0.5% for 13th, 0.5% for 14th, 0.5% for 15th, 0.5%
-          for 16th, 0.5% for 17th, 0.5% for 18th, 0.5% for 19th, 0.5% for 20th
-          level.
-        </p> */}
+        
       </div>
     </div>
 
