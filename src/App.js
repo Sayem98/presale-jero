@@ -1,25 +1,34 @@
-import logo from './logo.svg';
 import './App.css';
+import { WagmiConfig, createConfig } from "wagmi";
+import { ConnectKitProvider, ConnectKitButton, getDefaultConfig } from "connectkit";
+import Nav from './components/Nav';
+import { bsc } from "wagmi/chains";
+import { useEffect } from 'react';
 
-function App() {
+const chains = [bsc];
+const config = createConfig(
+  getDefaultConfig({
+    // Required API Keys
+    alchemyId: "EbWpcrEoNB5gzeDJi_clFzLbpbgTtuRt", // or infuraId
+    walletConnectProjectId: "6c145fd143381acdbd5482e31c1d887b",
+    chains,
+    // Required
+    appName: "Jero Staking",
+  }),
+);
+
+
+const App = () => {
+
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
+    <WagmiConfig config={config}>
+      <ConnectKitProvider>
+        <div className='App font-Poppins bg-black'>   
+          <Nav/>
+        </div>
+      </ConnectKitProvider>
+    </WagmiConfig>
   );
-}
+};
 
 export default App;
